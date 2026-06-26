@@ -119,12 +119,12 @@ class FarmEchoTask(WWOneTimeTask, BaseCombatTask):
         self.manage_boss_parameters()
         self.log_info(f'in_realm: {self._in_realm}')
         self._farm_start_time = time.time()
-        self._has_treasure = False
         self.is_revived = False
         self.init_parameters()
         if self.teleport_to_boss_enabled():
             self.teleport_to_configured_boss_and_prepare()
         while count < self.config.get("Repeat Farm Count", 0):
+            self._has_treasure = False
             try:
                 self.in_realm_check(60)
                 self.log_debug(f'start farming {count} {self._in_realm}')
